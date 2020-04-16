@@ -1,13 +1,13 @@
 (define (domain dungeon)
 
-(:requirements :strips :typing :conditional-effects :negative-preconditions :equality)
+;;(:requirements :strips :typing :conditional-effects :negative-preconditions :equality)
 
 (:types
     hero
-    room
+    sword
     monster
     trap
-    sword
+    room
 )
 
 
@@ -39,7 +39,7 @@
     (sword-holding ?h - hero ?x - sword) ;hero h is holding the sword x
 )
 
-(:action go
+(:action move
     :parameters (?h - hero ?from - room ?to - room)
     :precondition (and
         (not (destroy-room ?to)) 
