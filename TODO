@@ -1,0 +1,13 @@
+zip:
+1) pdf report
+2) domain and problem models in PDDL
+
+A list of the names and/or URLs of existing PDDL domain models (if any) that you have used to help you create it;
+  
+• A description of how you produced it, and what tools, if any, you used (e.g. a text editor, itSIMPLE, planning.domains);
+• A short description of the meaning of each operator schema in it, even if some were imported from some other domain model;
+• A very short comparison of the performance of the planners you have used to create solutions. 
+To do this, use and refer to the planning literature, to results of IPCs where they have competed if appropriate, 
+and with reference to how the planners performed on the planning problems you set.
+
+3) output of 2 planning engines that run on the PDDL models

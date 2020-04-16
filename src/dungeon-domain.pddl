@@ -1,8 +1,3 @@
-;;;;;;;;;;;;;;;;
-;; RPG DOMAIN ;;
-;;;;;;;;;;;;;;;;
-
-
 (define (domain rpg)
 
 (:requirements :strips :typing :conditional-effects :negative-preconditions :equality)
