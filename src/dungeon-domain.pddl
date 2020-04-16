@@ -10,122 +10,118 @@
     room
 )
 
-
 (:predicates
 
-    ;; HERO PREDICATES
-    (at ?h - hero ?x - room) ;hero h is in room x
-    (empty-hand ?h - hero) ;hero is holding nothing
-    (alive ?x - hero) ; the hero h is alive
+    (hero-in-room ?h - hero ?r - room) ; is the hero in room ?
+    (hero-empty-handed ?h - hero) ; is the hero empty-handed ? i.e. does he not have a sword ?
+    (hero-alive ?h - hero) ; is the hero alive ?
 
-    ;; ROOM PREDICATES
-    (destroy-room ?x - room) ;room x is destroyed
-    (free-to-go ?h - hero ?x - room) ;if the hero h can leave room x (traps are disarmed and monsters are away)
-    (corridor ?x ?y - room) ;there is a path between x and y 
+    (sword-in-room ?s - sword ?r - room) ; is there a sword in room ?
+    (sword-destroyed ?s - sword) ; has the sword been destroyed ?
+    (sword-holding ?h - hero ?x - sword) ; is the hero holding the sword ?
 
-    ;; MONSTER PREDICATES
-    (monster-at ?x - monster ?r - room) ;there is a monster x in room r
-    (monster-away ?h - hero ?x - monster) ;Monster x is afraid of hero h
+    (monster-in-room ?m - monster ?r - room) ; is there a monster in room ?
+    (monster-afraid ?h - hero ?m - monster) ; is monster afraid of hero ? (yes if hero holds a sword)
 
+    (trap-in-room ?t - trap ?r - room) ; is there a trap in the room ?
+    (trap-armed ?t - trap ?r - room) ; is the trap armed ?
+    (trap-disarmed ?t - trap ?r - room) ; is the trap disarmed ?
 
-    ;; TRAP PREDICATES
-    (trap-at ?t - trap ?x - room) ;there is a trap t in room x
-    (trap-armed ?x - trap ?y - room) ;trap x in room y is armed
-    (trap-disarmed ?x - trap ?y - room) ;trap x in room y is disarmed
+    (room-destroyed ?r - room) ; is the room destroyed ?
+    (room-cleared ?h - hero ?r - room) ; has the room being cleared ? (i.e. no monsters, all traps disarmed)
+    (room-corridor ?c ?r - room) ; is there a corridor to an adjacent room ?
 
-    ;; SWORD PREDICATES
-    (sword-at ?s - sword ?x - room) ;there is a sword in room x
-    (sword-destroyed ?x - sword) ;sword x destroyed
-    (sword-holding ?h - hero ?x - sword) ;hero h is holding the sword x
 )
+
+;; Hero actions
 
 (:action move
     :parameters (?h - hero ?from - room ?to - room)
     :precondition (and
-        (not (destroy-room ?to)) 
-        (at ?h ?from)
-        (alive ?h)
-        (corridor ?from ?to)
-        (free-to-go ?h ?from)
+        (not (room-destroyed ?to)) 
+        (hero-in-room ?h ?from)
+        (hero-alive ?h)
+        (room-corridor ?from ?to)
+        (room-cleared ?h ?from)
     )
     :effect (and 
-        (alive ?h)
-        (at ?h ?to)
-        (not (at ?h ?from))
-        (destroy-room ?from)
+        (hero-alive ?h)
+        (hero-in-room ?h ?to)
+        (not (hero-in-room ?h ?from))
+        (room-destroyed ?from)
     )
 )
 
 (:action pickup-sword
     :parameters (?r - room ?h - hero ?s - sword)
     :precondition (and
-        (alive ?h)
-        (at ?h ?r)
-        (empty-hand ?h)
-        (sword-at ?s ?r)
+        (hero-alive ?h)
+        (hero-in-room ?h ?r)
+        (hero-empty-handed ?h)
+        (sword-in-room ?s ?r)
         (not ( sword-holding ?h ?s))
     )
     :effect (and
-        (alive ?h)
-        (at ?h ?r)
-        (not (empty-hand ?h))
-        (not ( sword-at ?s ?r ))
+        (hero-alive ?h)
+        (hero-in-room ?h ?r)
+        (not (hero-empty-handed ?h))
+        (not ( sword-in-room ?s ?r ))
         (not ( sword-destroyed ?s ))
         (sword-holding ?h ?s)
-        (free-to-go ?h ?r)
+        (room-cleared ?h ?r)
     )
 )
 
 (:action destroy-sword
     :parameters (?h - hero ?s - sword)
     :precondition (and
-        (alive ?h)
+        (hero-alive ?h)
         (sword-holding ?h ?s)
     )
     :effect (and
-        (alive ?h)
+        (hero-alive ?h)
         (sword-destroyed ?s)
-        ( empty-hand ?h )
+        (hero-empty-handed ?h )
     )
 )
 
 (:action disarm-trap
     :parameters (?h - hero ?r - room ?t - trap)
     :precondition (and
-        ( alive ?h )
-        ( at ?h ?r )
-        ( empty-hand ?h )
-        ( trap-at ?t ?r )
-        ( trap-armed ?t ?r )
-        (not ( trap-disarmed ?t ?r ) )
+        (hero-alive ?h)
+        (hero-in-room ?h ?r)
+        (hero-empty-handed ?h)
+        (trap-in-room ?t ?r)
+        (trap-armed ?t ?r)
+        (not (trap-disarmed ?t ?r))
     )
     :effect (and
-        ( alive ?h )
-        ( at ?h ?r )
-        ( empty-hand ?h )
-        ( trap-at ?t ?r )
-        (not ( trap-armed ?t ?r ) )
-        ( trap-disarmed ?t ?r )
-        ( free-to-go ?h ?r )
+        (hero-alive ?h)
+        (hero-in-room ?h ?r)
+        (hero-empty-handed ?h)
+        (trap-in-room ?t ?r)
+        (not (trap-armed ?t ?r))
+        (trap-disarmed ?t ?r)
+        (room-cleared ?h ?r)
     )
 )
 
 (:action face-monster
     :parameters (?h - hero ?s - sword ?r - room ?m - monster)
     :precondition (and
-        ( alive ?h )
-        ( at ?h ?r )
-        ( sword-holding ?h ?s)
-        ( monster-at ?m ?r )
-        (not (monster-away ?h ?m))
+        (hero-alive ?h)
+        (hero-in-room ?h ?r)
+        (sword-holding ?h ?s)
+        (monster-in-room ?m ?r)
+        (not (monster-afraid ?h ?m))
     )
     :effect (and
-        ( alive ?h )
-        ( at ?h ?r )
-        ( sword-holding ?h ?s)
-        ( monster-at ?m ?r )
-        ( monster-away ?h ?m )
-        ( free-to-go ?h ?r )
+        (hero-alive ?h)
+        (hero-in-room ?h ?r)
+        (sword-holding ?h ?s)
+        (monster-in-room ?m ?r)
+        (monster-afraid ?h ?m)
+        (room-cleared ?h ?r)
     )
 )
 
