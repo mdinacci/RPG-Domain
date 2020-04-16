@@ -1,71 +1,63 @@
 (define (problem pb2) (:domain dungeon)
 (:objects
-    thor - hero
-    r0 r1 r2 r3 r4 r5 r6 - room
+    player - hero
     s1 - sword
     t1 - trap
     m1 m2 - monster
+    r0 r1 r2 r3 r4 r5 r6 - room
 )
 
 (:init
-    ;; STATES OF THE HERO
-    ( alive thor )
-    ( at thor r0 )
-    ( empty-hand thor )
+    (hero-alive player)
+    (hero-in-room player r0)
+    (hero-empty-handed player)
     
-    ;; STATES OF THE MONSTERS
-    ( monster-at m1 r2 )
-    (not ( monster-away thor m1 ))
-    ( monster-at m2 r3 )
-    (not ( monster-away thor m2 ))
+    (monster-in-room m1 r2)
+    (not ( monster-away player m1))
+    (monster-in-room m2 r3)
+    (not ( monster-away player m2))
 
-
-    ;; STATES OF THE SWORDS
-    (sword-at s1 r1)
+    (sword-in-room s1 r1)
     (not (sword-destroyed s1))
-    (not (sword-holding thor s1))
+    (not (sword-holding player s1))
 
-    ;; STATES OF THE TRAPS
-    (trap-at t1 r5)
+    (trap-in-room t1 r5)
     (trap-armed t1 r5)
     (not (trap-disarmed t1 r5))
 
-    ;; STATE OF THE ROOMS
-    (not (destroy-room r0) )
-    (not (destroy-room r1) )
-    (not (destroy-room r2) )
-    (not (destroy-room r3) )
-    (not (destroy-room r4) )
-    (not (destroy-room r5) )
-    (not (destroy-room r6) )
+    (not (room-destroyed r0))
+    (not (room-destroyed r1))
+    (not (room-destroyed r2))
+    (not (room-destroyed r3))
+    (not (room-destroyed r4))
+    (not (room-destroyed r5))
+    (not (room-destroyed r6))
 
-    (free-to-go thor r0)
-    (free-to-go thor r1)
-    (not (free-to-go thor r2))
-    (not (free-to-go thor r3))
-    (free-to-go thor r4)
-    (not (free-to-go thor r5))
-    (free-to-go thor r6)
+    (room-cleared player r0)
+    (room-cleared player r1)
+    (not (room-cleared player r2))
+    (not (room-cleared player r3))
+    (room-cleared player r4)
+    (not (room-cleared player r5))
+    (room-cleared player r6)
 
-
-    ( corridor r0 r1 )
-    ( corridor r0 r2 )
-    ( corridor r1 r0 )
-    ( corridor r1 r3 )
-    ( corridor r2 r0 )
-    ( corridor r2 r3 )
-    ( corridor r2 r4 )
-    ( corridor r3 r1 )
-    ( corridor r3 r2 )
-    ( corridor r3 r5 )
-    ( corridor r4 r2 )
-    ( corridor r4 r5 )
-    ( corridor r5 r4 )
-    ( corridor r5 r3 )
-    ( corridor r5 r6 )
-    ( corridor r6 r5 )
-
-
+    (room-corridor r0 r1)
+    (room-corridor r0 r2)
+    (room-corridor r1 r0)
+    (room-corridor r1 r3)
+    (room-corridor r2 r0)
+    (room-corridor r2 r3)
+    (room-corridor r2 r4)
+    (room-corridor r3 r1)
+    (room-corridor r3 r2)
+    (room-corridor r3 r5)
+    (room-corridor r4 r2)
+    (room-corridor r4 r5)
+    (room-corridor r5 r4)
+    (room-corridor r5 r3)
+    (room-corridor r5 r6)
+    (room-corridor r6 r5)
 )
-(:goal (and ( at thor r6 ) ( alive thor ) ) )
+
+(:goal (and ( hero-in-room player r6 ) ( hero-alive player ) ) )
 )

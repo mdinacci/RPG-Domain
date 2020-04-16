@@ -1,21 +1,21 @@
 (define (problem pb1) (:domain dungeon)
 (:objects
-    thor - hero
+    player - hero
     r0 r1 r2 r3 r4 r5 - room
     m1 m2 - monster
 )
 
 (:init
     ;; STATES OF THE HERO
-    ( hero-alive thor )
-    ( hero-in-room thor r0 )
-    ( hero-empty-handed thor )
+    ( hero-alive player )
+    ( hero-in-room player r0 )
+    ( hero-empty-handed player )
     
     ;; STATES OF THE MONSTERS
     ( monster-in-room m1 r1 )
-    (not ( monster-away thor m1 ))
+    (not ( monster-away player m1 ))
     ( monster-in-room m2 r4 )
-    (not ( monster-afraid thor m2 ))
+    (not ( monster-afraid player m2 ))
 
 
     ;; STATE OF THE ROOMS
@@ -26,12 +26,12 @@
     (not (room-destroyed r4) )
     (not (room-destroyed r5) )
 
-    ( room-cleared thor r0 )
-    (not (room-cleared thor r1))
-    ( room-cleared thor r2 )
-    (room-cleared thor r3)
-    (not (room-cleared thor r4))
-    (room-cleared thor r5)
+    ( room-cleared player r0 )
+    (not (room-cleared player r1))
+    ( room-cleared player r2 )
+    (room-cleared player r3)
+    (not (room-cleared player r4))
+    (room-cleared player r5)
 
 
     ( room-corridor r0 r1 )
@@ -51,5 +51,5 @@
 
 
 )
-(:goal (and ( hero-in-room thor r5 ) ( hero-alive thor ) ) )
+(:goal (and ( hero-in-room player r5 ) ( hero-alive player ) ) )
 )
