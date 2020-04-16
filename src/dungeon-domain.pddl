@@ -1,4 +1,4 @@
-(define (domain rpg)
+(define (domain dungeon)
 
 (:requirements :strips :typing :conditional-effects :negative-preconditions :equality)
 

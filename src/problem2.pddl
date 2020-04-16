@@ -1,4 +1,4 @@
-(define (problem pb2) (:domain rpg)
+(define (problem pb2) (:domain dungeon)
 (:objects
     thor - hero
     r0 r1 r2 r3 r4 r5 - room
