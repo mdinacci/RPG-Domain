@@ -56,7 +56,7 @@
     )
 )
 
-(:action pick-sword
+(:action pickup-sword
     :parameters (?r - room ?h - hero ?s - sword)
     :precondition (and
         (alive ?h)
