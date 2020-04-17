@@ -1,0 +1,21 @@
+--- OK.
+ Match tree built with 49 nodes.
+
+PDDL problem description loaded: 
+	Domain: DUNGEON
+	Problem: PB1
+	#Actions: 49
+	#Fluents: 71
+Landmarks found: 1
+Starting search with IW (time budget is 60 secs)...
+rel_plan size: 11
+#RP_fluents 21
+Caption
+{#goals, #UNnachieved,  #Achieved} -> IW(max_w)
+
+{1/1/0}:IW(1) -> [2][3][4][5][6][7][8][9][10][11][12][13]rel_plan size: 0
+#RP_fluents 0Plan found with cost: 12
+Total time: -1.8999e-10
+Nodes generated during search: 46
+Nodes expanded during search: 44
+IW search completed
