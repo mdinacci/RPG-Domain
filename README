@@ -2,6 +2,7 @@ Requirements
     - docker (to run the planners in the Lightweight Automated Planning ToolKiT)
     - python3 (optional, to run the planning.domains solver script). See requirements.txt for dependencies.
     - all code was developed and tested on MacOS but should equally work on all major commercial operating systems
+    - diff, vim + vimdiff plugin for diffing the planners output across directories (optional)
     
 Files
     - src contain all the source code for the assignment
