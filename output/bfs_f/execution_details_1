@@ -1,0 +1,10 @@
+Plan found with cost: 6
+1. (MOVE PLAYER R0 R1)
+2. (PICKUP-SWORD R1 PLAYER S0)
+3. (MOVE PLAYER R1 R3)
+4. (FACE-MONSTER PLAYER S0 R3 M1)
+5. (MOVE PLAYER R3 R4)
+6. (MOVE PLAYER R4 R7)
+Time: 0
+Generated: 13
+Expanded: 6

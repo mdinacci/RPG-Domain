@@ -1,0 +1,21 @@
+
+Plan found with cost: 12
+1. (MOVE PLAYER R0 R1)
+2. (PICKUP-SWORD R1 PLAYER S0)
+3. (MOVE PLAYER R1 R4)
+4. (DESTROY-SWORD PLAYER S0)
+5. (DISARM-TRAP PLAYER R4 T0)
+6. (MOVE PLAYER R4 R5)
+7. (FACE-MONSTER PLAYER S0 R5 M1)
+8. (MOVE PLAYER R5 R7)
+9. (DISARM-TRAP PLAYER R7 T0)
+10. (MOVE PLAYER R7 R10)
+11. (DISARM-TRAP PLAYER R10 T0)
+12. (MOVE PLAYER R10 R11)
+Time: 0
+Generated: 46
+Expanded: 44
+Total time: 0
+Nodes generated during search: 46
+Nodes expanded during search: 44
+Backtracks during search: 0

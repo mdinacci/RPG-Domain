@@ -1,0 +1,14 @@
+Plan found with cost: 6
+1. (MOVE PLAYER R0 R1)
+2. (PICKUP-SWORD R1 PLAYER S0)
+3. (MOVE PLAYER R1 R2)
+4. (FACE-MONSTER PLAYER S0 R2 M0)
+5. (MOVE PLAYER R2 R4)
+6. (MOVE PLAYER R4 R7)
+Time: 0
+Generated: 7
+Expanded: 7
+	Generated EHC: 7
+	Expanded EHC: 7
+	Generated GBFS: 0
+	Expanded GBFS: 0
