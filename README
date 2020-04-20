@@ -1,0 +1,4 @@
+Directory layout:
+    - src contain all the source code for the assignment
+    - output contain the output from the planning engines used
+    - scripts contain some scripts used to run the planning engines
