@@ -1,4 +1,11 @@
-Directory layout:
+Requirements
+    - docker (to run the planners in the Lightweight Automated Planning ToolKiT)
+    - python3 (optional, to run the planning.domains solver script). See requirements.txt for dependencies.
+    - all code was developed and tested on MacOS but should equally work on all major commercial operating systems
+    
+Files
     - src contain all the source code for the assignment
     - output contain the output from the planning engines used
     - scripts contain some scripts used to run the planning engines
+    - README this file
+    - report.pdf the assignment report, generated using XeLaTex
