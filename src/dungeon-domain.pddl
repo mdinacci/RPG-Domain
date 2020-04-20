@@ -1,7 +1,5 @@
 (define (domain dungeon)
 
-;;(:requirements :strips :typing :conditional-effects :negative-preconditions :equality)
-
 (:types
     hero
     sword
