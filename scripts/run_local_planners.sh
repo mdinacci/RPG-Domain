@@ -9,6 +9,8 @@
 
 planners=(dfs_plus bfs_f siw siw_plus siw-then-bfsf ff)
 
+source_dir=/dungeon/src
+
 for planner in "${planners[@]}" 
 do 
     echo -e "Using planner $planner" 
@@ -17,8 +19,8 @@ do
 
     for i in 1 2 3
     do
-        echo -e "./$planner --domain /dungeon/dungeon-domain.pddl --problem /dungeon/problem$i.pddl"
-        ./$planner --domain /dungeon/dungeon-domain.pddl --problem /dungeon/problem$i.pddl --output output/$planner/$i.ipc
+        echo -e "./$planner --domain $source_dir/dungeon-domain.pddl --problem $source_dir/problem$i.pddl"
+        ./$planner --domain $source_dir/dungeon-domain.pddl --problem $source_dir/problem$i.pddl --output output/$planner/$i.ipc
         mv execution.details output/$planner/execution_details_$i
     done
 done

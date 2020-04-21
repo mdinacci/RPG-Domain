@@ -4,6 +4,23 @@ Requirements
     - all code was developed and tested on MacOS but should equally work on all major commercial operating systems
     - diff, vim + vimdiff plugin for diffing the planners output across directories (optional)
     
+How to run planners:
+
+# Run the planning.domains planner
+./scripts/run.py src/dungeon-domain.pddl src/problem1.pddl | python -m json.tool -
+
+# Run all the local planners 
+
+docker pull lapkt/lapkt-public # to run only once to download the docker image
+docker run -v /path/to/this/directory:/dungeon -it lapkt/lapkt-public
+cp /dungeon/run_local_planners.sh .
+
+# Run the planners
+./run_local_planners.sh 
+
+
+# Run
+
 Files
     - src contain all the source code for the assignment
     - output contain the output from the planning engines used

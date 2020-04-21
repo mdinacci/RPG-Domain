@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #
 # Run as python run.py  dungeon-domain.pddl problem1.pddl | python -m json.tool -
 #
