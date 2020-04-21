@@ -33,7 +33,12 @@ after it will still allow seeing the difference between the directories but the 
     - output contain the output from the planning engines used
     - scripts contain some scripts used to run the planning engines
     - README this file
-    - report.pdf the assignment report, generated using XeLaTex and written on overleaf.com
+    - report.pdf the assignment report
+
+# Assignment Report
+
+The report is in the report.pdf file. It's been generated using XeLatex and written on overleaf.com.
+According to overleaf.com, it has a word count of 937.
 
 # Contacts
 
