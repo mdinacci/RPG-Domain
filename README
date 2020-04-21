@@ -1,29 +1,41 @@
-Requirements
+# Requirements
     - docker (to run the planners in the Lightweight Automated Planning ToolKiT)
     - python3 (optional, to run the planning.domains solver script). See requirements.txt for dependencies.
     - all code was developed and tested on MacOS but should equally work on all major commercial operating systems
     - diff, vim + vimdiff plugin for diffing the planners output across directories (optional)
+    - bash
     
-How to run planners:
+# Running planners
 
-# Run the planning.domains planner
+# Create a virtualenv and install the dependencies (to be done only once)
+python3.7 -m virtualenv ~/.virtualenv/planning
+ ~/.virtualenv/planning/bin/activate.sh (depending on the shell used)
+pip install -r requirements.txt
+
+## Run the planning.domains planner
 ./scripts/run.py src/dungeon-domain.pddl src/problem1.pddl | python -m json.tool -
 
-# Run all the local planners 
-
+# Run the LAPTK planners 
 docker pull lapkt/lapkt-public # to run only once to download the docker image
 docker run -v /path/to/this/directory:/dungeon -it lapkt/lapkt-public
 cp /dungeon/run_local_planners.sh .
-
-# Run the planners
 ./run_local_planners.sh 
 
+# Compare planners output
 
-# Run
+diff -r -u planner_output_directory_1 planner_output_directory_2 | vim -R -
 
-Files
+This command will require having vim and the vimdiff plugin installed. Dropping the pipe and everything
+after will still allow seeing the difference between the directories but the output will be less readable.
+
+# Files reference
     - src contain all the source code for the assignment
     - output contain the output from the planning engines used
     - scripts contain some scripts used to run the planning engines
     - README this file
     - report.pdf the assignment report, generated using XeLaTex
+
+# Contacts
+
+Marco Dinacci
+u1972408@unimail.hud.ac.uk
